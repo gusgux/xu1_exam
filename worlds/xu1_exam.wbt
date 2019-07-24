@@ -1,14 +1,64 @@
 #VRML_SIM R2019b utf8
 WorldInfo {
-  info [
-  ]
 }
 Viewpoint {
-  orientation -0.7 0.7 0.2 0.75
-  position 1.2 1.6 2.3
-
+  orientation 0.11199136557885955 -0.9871085803641956 -0.11434414985981955 4.7333648960448125
+  position 1.5843015015459554 0.47164782645630016 0.08262786491781973
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
+}
+Floor {
+}
+Robot {
+  translation 0 0.025 0
+  children [
+    DEF BODY Group {
+      children [
+        Shape {
+          appearance DEF BODY_COLOR PBRAppearance {
+            baseColor 0.533333 0.541176 0.521569
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.4 0.01 0.2
+          }
+        }
+        Transform {
+          translation 0 0.055 0.095
+          rotation 1 0 0 1.57
+          children [
+            Shape {
+              appearance DEF BODY_COLOR PBRAppearance {
+                baseColor 0.533333 0.541176 0.521569
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.4 0.01 0.1
+              }
+            }
+          ]
+        }
+        Transform {
+          translation 0 0.055 -0.095
+          rotation 1 0 0 1.57
+          children [
+            Shape {
+              appearance DEF BODY_COLOR PBRAppearance {
+                baseColor 0.533333 0.541176 0.521569
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.4 0.01 0.1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
