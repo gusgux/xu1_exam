@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.11199136557885955 -0.9871085803641956 -0.11434414985981955 4.7333648960448125
-  position 1.5843015015459554 0.47164782645630016 0.08262786491781973
+  orientation 0.4858004021764408 -0.8141164371684336 -0.31813895702567474 4.9477254342353
+  position 0.5674501308984254 0.47363386466559654 0.13526644776219915
 }
 TexturedBackground {
 }
@@ -27,7 +27,7 @@ Robot {
           }
         }
         Transform {
-          translation 0 0.055 0.095
+          translation 0 0.055 0.09
           rotation 1 0 0 1.57
           children [
             Shape {
@@ -37,13 +37,14 @@ Robot {
                 metalness 0
               }
               geometry Box {
-                size 0.4 0.01 0.1
+                size 0.4 0.02 0.1
               }
             }
           ]
+          rotationStep 0.261799
         }
         Transform {
-          translation 0 0.055 -0.095
+          translation 0 0.055 -0.09
           rotation 1 0 0 1.57
           children [
             Shape {
@@ -53,12 +54,34 @@ Robot {
                 metalness 0
               }
               geometry Box {
-                size 0.4 0.01 0.1
+                size 0.4 0.02 0.1
               }
             }
           ]
         }
       ]
+    }
+    DEF WHEELS Group {
+      children [
+        HingeJoint {
+          jointParameters HingeJointParameters {
+          }
+          endPoint Solid {
+            children [
+              Shape {
+                appearance DEF WHEEL_COLOR PBRAppearance {
+                }
+                geometry Cylinder {
+                  height 0.1
+                  radius 0.05
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+    Group {
     }
   ]
 }
