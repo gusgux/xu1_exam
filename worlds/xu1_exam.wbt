@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.2062133541812525 -0.9741666558561265 -0.09206182257270748 4.691283579008855
-  position 1.3850257218172217 0.5420494855889832 -0.16955099891082015
+  orientation 0.7211981092587779 -0.6781011511093852 -0.14160549447564016 5.261284608020455
+  position 0.5420061123772139 0.7916114739855302 0.3873538598440819
 }
 TexturedBackground {
 }
@@ -151,8 +151,9 @@ Robot {
               jointParameters HingeJointParameters {
                 axis 0 0 1
                 anchor 0.055 0.00625 0.06
-                minStop -1.57
+                minStop 1.04719
                 maxStop 1.57
+                staticFriction 0.5
               }
               endPoint Solid {
                 translation 0.055 0.11249999999999999 0.06
@@ -175,8 +176,9 @@ Robot {
               jointParameters HingeJointParameters {
                 axis 0 0 1
                 anchor 0.055 0.00625 -0.06
-                minStop -1.57
+                minStop 1.0471
                 maxStop 1.57
+                staticFriction 0.5
               }
               endPoint Solid {
                 translation 0.055 0.1125 -0.06
@@ -185,6 +187,69 @@ Robot {
                   Shape {
                     appearance USE ARM_COLOR
                     geometry USE ARM_LINK1
+                  }
+                  HingeJoint {
+                    jointParameters HingeJointParameters {
+                      axis 0 0 1
+                      anchor 0 -0.115 0.06
+                      minStop 1.57
+                      maxStop 1.57
+                    }
+                    endPoint Solid {
+                      translation 1.3703308123333379e-17 -0.11500000000000002 0.06
+                      rotation 0 0 1 0
+                      children [
+                        Shape {
+                          appearance USE ARM_COLOR
+                          geometry DEF ARM_FRAME Box {
+                            size 0.04 0.02 0.1
+                          }
+                        }
+                        HingeJoint {
+                          jointParameters HingeJointParameters {
+                            axis 0 1 0
+                            anchor 0 -0.01 0
+                          }
+                          endPoint Solid {
+                            translation 0 -0.035 0
+                            children [
+                              Shape {
+                                appearance USE ARM_COLOR
+                                geometry DEF ARM_FRAME2 Box {
+                                  size 0.03 0.05 0.03
+                                }
+                              }
+                              HingeJoint {
+                                jointParameters HingeJointParameters {
+                                  axis 0 1 0
+                                }
+                                endPoint Solid {
+                                  translation 0 -0.03 0
+                                  children [
+                                    Shape {
+                                      appearance USE ARM_COLOR
+                                      geometry DEF ARM_GRIPPER_F1 Box {
+                                        size 0.01 0.01 0.06
+                                      }
+                                    }
+                                  ]
+                                  boundingObject USE ARM_GRIPPER_F1
+                                  physics Physics {
+                                  }
+                                }
+                              }
+                            ]
+                            boundingObject USE ARM_FRAME2
+                            physics Physics {
+                            }
+                          }
+                        }
+                      ]
+                      name "solid(1)"
+                      boundingObject USE ARM_FRAME
+                      physics Physics {
+                      }
+                    }
                   }
                 ]
                 name "solid(5)"
