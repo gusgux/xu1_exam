@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.02991305175904262 -0.9991394366859961 0.02873317582953658 4.751760362412888
-  position 1.9880027773829705 0.3226616049884464 0.17430017628369576
+  orientation 0.2062133541812525 -0.9741666558561265 -0.09206182257270748 4.691283579008855
+  position 1.3850257218172217 0.5420494855889832 -0.16955099891082015
 }
 TexturedBackground {
 }
@@ -62,7 +62,7 @@ Robot {
             translation 0.1 0 0.105
             rotation 1 0 0 1.57
             children [
-              Shape {
+              DEF WHEEL_SHAPE Shape {
                 appearance DEF WHEEL_COLOR PBRAppearance {
                   baseColor 0 0 0
                   roughness 1
@@ -74,6 +74,9 @@ Robot {
                 }
               }
             ]
+            boundingObject USE WHEEL_GEO
+            physics Physics {
+            }
           }
         }
         HingeJoint {
@@ -85,12 +88,12 @@ Robot {
             translation 0.1 0 -0.105
             rotation 1 0 0 1.57
             children [
-              Shape {
-                appearance USE WHEEL_COLOR
-                geometry USE WHEEL_GEO
-              }
+              USE WHEEL_SHAPE
             ]
             name "solid(1)"
+            boundingObject USE WHEEL_SHAPE
+            physics Physics {
+            }
           }
         }
         HingeJoint {
@@ -102,12 +105,12 @@ Robot {
             translation -0.1 0 0.105
             rotation 1 0 0 1.57
             children [
-              Shape {
-                appearance USE WHEEL_COLOR
-                geometry USE WHEEL_GEO
-              }
+              USE WHEEL_SHAPE
             ]
             name "solid(2)"
+            boundingObject USE WHEEL_SHAPE
+            physics Physics {
+            }
           }
         }
         HingeJoint {
@@ -119,19 +122,19 @@ Robot {
             translation -0.1 0 -0.105
             rotation 1 0 0 1.57
             children [
-              Shape {
-                appearance USE WHEEL_COLOR
-                geometry USE WHEEL_GEO
-              }
+              USE WHEEL_SHAPE
             ]
             name "solid(3)"
+            boundingObject USE WHEEL_SHAPE
+            physics Physics {
+            }
           }
         }
       ]
     }
     DEF ROBOT_ARM Group {
       children [
-        Transform {
+        Solid {
           translation 0.1 0.03 0
           children [
             Shape {
@@ -140,7 +143,7 @@ Robot {
                 roughness 1
                 metalness 0
               }
-              geometry Box {
+              geometry DEF ARM_BOX Box {
                 size 0.15 0.05 0.1
               }
             }
@@ -163,6 +166,9 @@ Robot {
                   }
                 ]
                 name "solid(4)"
+                boundingObject USE ARM_LINK1
+                physics Physics {
+                }
               }
             }
             HingeJoint {
@@ -182,11 +188,21 @@ Robot {
                   }
                 ]
                 name "solid(5)"
+                boundingObject USE ARM_LINK1
+                physics Physics {
+                }
               }
             }
           ]
+          name "solid(6)"
+          boundingObject USE ARM_BOX
+          physics Physics {
+          }
         }
       ]
     }
   ]
+  boundingObject USE BODY
+  physics Physics {
+  }
 }
