@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.08890700268486575 0.9402603111681126 0.32864280323116374 3.6397608284883916
-  position -0.7690771239730368 0.612371958889024 -0.8395642916341819
+  orientation 0.045195136989657915 -0.9983880192530932 -0.03433311236068229 4.982316084377215
+  position 0.9760049526170718 0.1963817690339479 0.2730775828991282
 }
 TexturedBackground {
 }
@@ -31,12 +31,8 @@ Robot {
           rotation 1 0 0 1.57
           children [
             Shape {
-              appearance DEF BODY_COLOR PBRAppearance {
-                baseColor 0.533333 0.541176 0.521569
-                roughness 1
-                metalness 0
-              }
-              geometry Box {
+              appearance USE BODY_COLOR
+              geometry DEF BODY_LAYER Box {
                 size 0.4 0.02 0.1
               }
             }
@@ -48,14 +44,8 @@ Robot {
           rotation 1 0 0 1.57
           children [
             Shape {
-              appearance DEF BODY_COLOR PBRAppearance {
-                baseColor 0.533333 0.541176 0.521569
-                roughness 1
-                metalness 0
-              }
-              geometry Box {
-                size 0.4 0.02 0.1
-              }
+              appearance USE BODY_COLOR
+              geometry USE BODY_LAYER
             }
           ]
         }
@@ -65,6 +55,8 @@ Robot {
       children [
         HingeJoint {
           jointParameters HingeJointParameters {
+            axis 0 0 1
+            anchor 0.1 0 0.105
           }
           endPoint Solid {
             translation 0.1 0 0.105
@@ -76,7 +68,7 @@ Robot {
                   roughness 1
                   metalness 0
                 }
-                geometry Cylinder {
+                geometry DEF WHEEL_GEO Cylinder {
                   height 0.01
                   radius 0.05
                 }
@@ -86,6 +78,8 @@ Robot {
         }
         HingeJoint {
           jointParameters HingeJointParameters {
+            axis 0 0 1
+            anchor 0.1 0 -0.105
           }
           endPoint Solid {
             translation 0.1 0 -0.105
@@ -93,10 +87,7 @@ Robot {
             children [
               Shape {
                 appearance USE WHEEL_COLOR
-                geometry DEF WHEEL_COLOR Cylinder {
-                  height 0.01
-                  radius 0.05
-                }
+                geometry USE WHEEL_GEO
               }
             ]
             name "solid(1)"
@@ -104,21 +95,16 @@ Robot {
         }
         HingeJoint {
           jointParameters HingeJointParameters {
+            axis 0 0 1
+            anchor -0.1 0 0.105
           }
           endPoint Solid {
             translation -0.1 0 0.105
             rotation 1 0 0 1.57
             children [
               Shape {
-                appearance DEF WHEEL_COLOR PBRAppearance {
-                  baseColor 0 0 0
-                  roughness 1
-                  metalness 0
-                }
-                geometry DEF WHEEL_COLOR Cylinder {
-                  height 0.01
-                  radius 0.05
-                }
+                appearance USE WHEEL_COLOR
+                geometry USE WHEEL_GEO
               }
             ]
             name "solid(2)"
@@ -126,21 +112,16 @@ Robot {
         }
         HingeJoint {
           jointParameters HingeJointParameters {
+            axis 0 0 1
+            anchor -0.1 0 -0.105
           }
           endPoint Solid {
             translation -0.1 0 -0.105
             rotation 1 0 0 1.57
             children [
               Shape {
-                appearance DEF WHEEL_COLOR PBRAppearance {
-                  baseColor 0 0 0
-                  roughness 1
-                  metalness 0
-                }
-                geometry DEF WHEEL_COLOR Cylinder {
-                  height 0.01
-                  radius 0.05
-                }
+                appearance USE WHEEL_COLOR
+                geometry USE WHEEL_GEO
               }
             ]
             name "solid(3)"
@@ -148,7 +129,11 @@ Robot {
         }
       ]
     }
-    Group {
+    DEF ROBOT_ARM Group {
+      children [
+        Transform {
+        }
+      ]
     }
   ]
 }
