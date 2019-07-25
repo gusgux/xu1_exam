@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.7211981092587779 -0.6781011511093852 -0.14160549447564016 5.261284608020455
-  position 0.5420061123772139 0.7916114739855302 0.3873538598440819
+  orientation 0.8849088602697123 -0.4580850556886867 -0.08422820650382937 5.291285293780498
+  position 0.27872404576971266 0.6639842121877113 0.2944586011009599
 }
 TexturedBackground {
 }
@@ -178,7 +178,7 @@ Robot {
                 anchor 0.055 0.00625 -0.06
                 minStop 1.0471
                 maxStop 1.57
-                staticFriction 0.5
+                staticFriction 10
               }
               endPoint Solid {
                 translation 0.055 0.1125 -0.06
@@ -194,9 +194,10 @@ Robot {
                       anchor 0 -0.115 0.06
                       minStop 1.57
                       maxStop 1.57
+                      staticFriction 0.03
                     }
                     endPoint Solid {
-                      translation 1.3703308123333379e-17 -0.11500000000000002 0.06
+                      translation 1.37033e-17 -0.115 0.06
                       rotation 0 0 1 0
                       children [
                         Shape {
@@ -209,6 +210,7 @@ Robot {
                           jointParameters HingeJointParameters {
                             axis 0 1 0
                             anchor 0 -0.01 0
+                            staticFriction 10
                           }
                           endPoint Solid {
                             translation 0 -0.035 0
@@ -230,6 +232,47 @@ Robot {
                                       appearance USE ARM_COLOR
                                       geometry DEF ARM_GRIPPER_F1 Box {
                                         size 0.01 0.01 0.06
+                                      }
+                                    }
+                                    HingeJoint {
+                                      jointParameters HingeJointParameters {
+                                        axis 0 1 0
+                                        anchor 0 -0.03 0.025
+                                      }
+                                      endPoint Solid {
+                                        translation 0 -0.03 0.025
+                                        children [
+                                          Shape {
+                                            appearance USE ARM_COLOR
+                                            geometry DEF ARM_GRIPPER_F2 Box {
+                                              size 0.01 0.05 0.01
+                                            }
+                                          }
+                                        ]
+                                        boundingObject USE ARM_GRIPPER_F2
+                                        physics Physics {
+                                        }
+                                      }
+                                    }
+                                    HingeJoint {
+                                      jointParameters HingeJointParameters {
+                                        axis 0 1 0
+                                        anchor 0 -0.03 -0.025
+                                      }
+                                      endPoint Solid {
+                                        translation 0 -0.03 -0.025
+                                        children [
+                                          Shape {
+                                            appearance USE ARM_COLOR
+                                            geometry DEF ARM_GRIPPER_F3 Box {
+                                              size 0.01 0.05 0.01
+                                            }
+                                          }
+                                        ]
+                                        name "solid(1)"
+                                        boundingObject USE ARM_GRIPPER_F3
+                                        physics Physics {
+                                        }
                                       }
                                     }
                                   ]
