@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.045195136989657915 -0.9983880192530932 -0.03433311236068229 4.982316084377215
-  position 0.9760049526170718 0.1963817690339479 0.2730775828991282
+  orientation -0.02991305175904262 -0.9991394366859961 0.02873317582953658 4.751760362412888
+  position 1.9880027773829705 0.3226616049884464 0.17430017628369576
 }
 TexturedBackground {
 }
@@ -132,6 +132,59 @@ Robot {
     DEF ROBOT_ARM Group {
       children [
         Transform {
+          translation 0.1 0.03 0
+          children [
+            Shape {
+              appearance DEF ARM_COLOR PBRAppearance {
+                baseColor 0.7999999999999999 0 0
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.15 0.05 0.1
+              }
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                axis 0 0 1
+                anchor 0.055 0.00625 0.06
+                minStop -1.57
+                maxStop 1.57
+              }
+              endPoint Solid {
+                translation 0.055 0.11249999999999999 0.06
+                rotation 0 0 1 3.1416
+                children [
+                  Shape {
+                    appearance USE ARM_COLOR
+                    geometry DEF ARM_LINK1 Box {
+                      size 0.04 0.25 0.02
+                    }
+                  }
+                ]
+                name "solid(4)"
+              }
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                axis 0 0 1
+                anchor 0.055 0.00625 -0.06
+                minStop -1.57
+                maxStop 1.57
+              }
+              endPoint Solid {
+                translation 0.055 0.1125 -0.06
+                rotation 0 0 1 3.1416
+                children [
+                  Shape {
+                    appearance USE ARM_COLOR
+                    geometry USE ARM_LINK1
+                  }
+                ]
+                name "solid(5)"
+              }
+            }
+          ]
         }
       ]
     }
