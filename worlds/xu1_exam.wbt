@@ -178,7 +178,7 @@ Robot {
                 anchor 0.055 0.00625 -0.06
                 minStop 1.0471
                 maxStop 1.57
-                staticFriction 10
+                staticFriction 0.5
               }
               endPoint Solid {
                 translation 0.055 0.1125 -0.06
@@ -245,7 +245,7 @@ Robot {
                                           Shape {
                                             appearance USE ARM_COLOR
                                             geometry DEF ARM_GRIPPER_F2 Box {
-                                              size 0.01 0.05 0.01
+                                              size 0.02 0.05 0.01
                                             }
                                           }
                                         ]
