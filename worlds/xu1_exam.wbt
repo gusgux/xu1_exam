@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.4858004021764408 -0.8141164371684336 -0.31813895702567474 4.9477254342353
-  position 0.5674501308984254 0.47363386466559654 0.13526644776219915
+  orientation 0.08890700268486575 0.9402603111681126 0.32864280323116374 3.6397608284883916
+  position -0.7690771239730368 0.612371958889024 -0.8395642916341819
 }
 TexturedBackground {
 }
@@ -12,7 +12,7 @@ TexturedBackgroundLight {
 Floor {
 }
 Robot {
-  translation 0 0.025 0
+  translation 0 0.05 0
   children [
     DEF BODY Group {
       children [
@@ -67,16 +67,83 @@ Robot {
           jointParameters HingeJointParameters {
           }
           endPoint Solid {
+            translation 0.1 0 0.105
+            rotation 1 0 0 1.57
             children [
               Shape {
                 appearance DEF WHEEL_COLOR PBRAppearance {
+                  baseColor 0 0 0
+                  roughness 1
+                  metalness 0
                 }
                 geometry Cylinder {
-                  height 0.1
+                  height 0.01
                   radius 0.05
                 }
               }
             ]
+          }
+        }
+        HingeJoint {
+          jointParameters HingeJointParameters {
+          }
+          endPoint Solid {
+            translation 0.1 0 -0.105
+            rotation 1 0 0 1.57
+            children [
+              Shape {
+                appearance USE WHEEL_COLOR
+                geometry DEF WHEEL_COLOR Cylinder {
+                  height 0.01
+                  radius 0.05
+                }
+              }
+            ]
+            name "solid(1)"
+          }
+        }
+        HingeJoint {
+          jointParameters HingeJointParameters {
+          }
+          endPoint Solid {
+            translation -0.1 0 0.105
+            rotation 1 0 0 1.57
+            children [
+              Shape {
+                appearance DEF WHEEL_COLOR PBRAppearance {
+                  baseColor 0 0 0
+                  roughness 1
+                  metalness 0
+                }
+                geometry DEF WHEEL_COLOR Cylinder {
+                  height 0.01
+                  radius 0.05
+                }
+              }
+            ]
+            name "solid(2)"
+          }
+        }
+        HingeJoint {
+          jointParameters HingeJointParameters {
+          }
+          endPoint Solid {
+            translation -0.1 0 -0.105
+            rotation 1 0 0 1.57
+            children [
+              Shape {
+                appearance DEF WHEEL_COLOR PBRAppearance {
+                  baseColor 0 0 0
+                  roughness 1
+                  metalness 0
+                }
+                geometry DEF WHEEL_COLOR Cylinder {
+                  height 0.01
+                  radius 0.05
+                }
+              }
+            ]
+            name "solid(3)"
           }
         }
       ]
